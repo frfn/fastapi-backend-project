@@ -1,11 +1,5 @@
 # FastAPI Project
 
-This project will be based off the course I took.
-
-Added my own twist.
-
-# Steps to create project
-
 > Steps 1-5 creates a working web framework application. 
 
 > Steps 6-7 connects to the database
