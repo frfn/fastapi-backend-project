@@ -6,3 +6,4 @@ generated_test_db.db
 __pycache__
 workspace.xml
 .pytest_cache
+.idea
