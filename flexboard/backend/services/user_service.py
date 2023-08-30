@@ -14,7 +14,8 @@ class UserService:
         self.hash_service = hash_service_param
 
     def create_new_user(self, user_create: UserCreate, db_session: Session) -> Optional[User]:
-        user: User = self.user_dao.create_new_user(user_create, db_session)
+        bcrypt_hashed_password: str = hash_service.hash(user_create.password)
+        user: User = self.user_dao.create_new_user(user_create, bcrypt_hashed_password, db_session)
 
         if not user:
             return None

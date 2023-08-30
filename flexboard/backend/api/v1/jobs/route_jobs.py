@@ -12,6 +12,12 @@ from services.job_service import job_service
 
 router: APIRouter = APIRouter()
 
+"""
+Restricted endpoints are denoted with `user: User = Depends(get_current_user_from_token)`
+
+Other endpoints that does not include `user: User = Depends(get_current_user_from_token)` will be available for access to anyone.
+"""
+
 
 @router.post("/create-job", response_model=ShowJob)
 def create_job(job: JobCreate, user: User = Depends(get_current_user_from_token), session: Session = Depends(get_database)) -> ShowJob:

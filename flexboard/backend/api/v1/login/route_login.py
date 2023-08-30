@@ -37,7 +37,16 @@ async def login_for_access_token(response: Response, form_data: OAuth2PasswordRe
 
     user: User = user_service.get_user_by_email_or_username(form_data.username, session)
 
-    is_valid: bool = user_service.authenticate_user(form_data.password, user.hashed_password)
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Username not found.",
+            headers={"WWW-Authenticate": "Bearer"},  # Not added by me. Copy and pasted from FastAPI docs.
+        )
+
+    parsed_bcrypt_password: str = user.hashed_password.split("}")[1]
+
+    is_valid: bool = user_service.authenticate_user(form_data.password, parsed_bcrypt_password)
 
     if not is_valid:
         raise HTTPException(

@@ -5,12 +5,11 @@ from sqlalchemy.orm import Session
 
 from api_models.user import UserCreate
 from database.orm_models.user import User
-from services.hash_service import hash_service
 
 
 class UserDao:
     # Create a new user in the Database!
-    def create_new_user(self, user_create: UserCreate, db_session: Session) -> User:
+    def create_new_user(self, user_create: UserCreate, bcrypt_hashed_password: str, db_session: Session) -> User:
         # User isn't a normal class object, there is no __init__ (the constructor) hence why we get the yellow highlights
         # User is NOT a normal class, this is a SQL Alchemy object, data will come from Database!
         # when creating the new user, there will be more properties added on!!
@@ -19,7 +18,7 @@ class UserDao:
         db_user: User = User(
             username=user_create.username,
             email=user_create.email,
-            hashed_password=hash_service.hash(user_create.password),
+            hashed_password=bcrypt_hashed_password,
 
             # We can't unpack user as shown below
             # **user.model_dump()

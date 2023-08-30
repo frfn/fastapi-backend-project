@@ -4,7 +4,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 PATH_TO_ENV_FILE: str = '.env'
-FULL_ENV_PATH = Path('/Users/flexerfadrigalan/Documents/Code/PycharmProjects/MyProject/flexboard/backend') / PATH_TO_ENV_FILE
+FULL_ENV_PATH = Path('/Users/flexerfadrigalan/Documents/Code/Python/FastAPI/Udemy Course - FastAPI - Flex - MyProject/flexboard/backend') / PATH_TO_ENV_FILE
 
 # Loads the variables off the `.env` file
 load_dotenv(dotenv_path=FULL_ENV_PATH)

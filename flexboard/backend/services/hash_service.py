@@ -23,7 +23,7 @@ class HashService:
         return is_password_valid
 
     @staticmethod
-    def hash(plain_password: str):
+    def hash(plain_password: str) -> str:
         return pwd_context.hash(plain_password)
 
 
